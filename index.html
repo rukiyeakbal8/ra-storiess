@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R.A. Stories | Rukiye Akbal</title>
+    <!-- Estetik Yazı Tipleri -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* GENEL AYARLAR */
+        body {
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* ÜST MENÜ */
+        nav {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .logo span {
+            color: #8b0000;
+        }
+        .menu-linkleri {
+            display: flex;
+            align-items: center;
+        }
+        .menu-linkleri > a {
+            color: #b3b3b3;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .menu-linkleri > a:hover {
+            color: #8b0000;
+        }
+
+        /* GÖRSELLİ AÇILIR MENÜ ANİMASYONU */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 30px;
+        }
+        .dropbtn {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .dropdown:hover .dropbtn {
+            color: #8b0000;
+        }
+        .dropdown-content {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            background-color: #1a1a1a;
+            min-width: 320px;
+            box-shadow: 0px 8px 25px 0px rgba(0,0,0,0.9);
+            z-index: 1;
+            top: 150%;
+            left: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+            border-top: 2px solid #8b0000;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            color: #ccc;
+            padding: 15px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background-color: #000;
+            color: #fff;
+            padding-left: 25px;
+        }
+        
+        .dropdown-gorsel {
+            width: 45px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #333;
+            transition: 0.3s ease;
+        }
+        .dropdown-content a:hover .dropdown-gorsel {
+            border-color: #8b0000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ANA EKRAN */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(13, 13, 13, 1)), url('arkaplan2.jpg') center/cover;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4em;
+            margin: 0;
+            color: #ffffff;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+
+        /* ORTAK BÖLÜM AYARLARI */
+        .bolum {
+            padding: 80px 10%;
+            text-align: center;
+        }
+        .bolum-basligi {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5em;
+            color: #fff;
+            margin-bottom: 50px;
+        }
+        .bolum-basligi::after {
+            content: '';
+            width: 80px;
+            height: 2px;
+            background-color: #8b0000;
+            display: block;
+            margin: 15px auto 0;
+        }
+
+        /* KİTAPLAR VİTRİNİ */
+        .kitap-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .kitap-karti {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 280px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .kitap-karti:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 0, 0, 0.2);
+        }
+        .kitap-gorsel {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .kitap-bilgi {
+            padding: 20px;
+        }
+        .kitap-bilgi h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2em;
+            color: #fff;
+            margin: 0 0 10px 0;
+        }
+        .incele-buton {
+            display: inline-block;
+            padding: 8px 20px;
+            margin-top: 10px;
+            background-color: transparent;
+            color: #8b0000;
+            border: 1px solid #8b0000;
+            text-decoration: none;
+            font-size: 0.8em;
+            transition: 0.3s;
+        }
+        .incele-buton:hover {
+            background-color: #8b0000;
+            color: #fff;
+        }
+
+        /* FAVORİ KARAKTERLER BÖLÜMÜ */
+        .karakter-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .karakter-karti {
+            width: 200px;
+            text-align: center;
+        }
+        .karakter-resim {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #333;
+            object-fit: cover;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+        .karakter-karti:hover .karakter-resim {
+            border-color: #8b0000;
+            transform: scale(1.05);
+        }
+        .karakter-karti h4 {
+            font-family: 'Cinzel', serif;
+            color: #fff;
+            margin: 0 0 5px 0;
+        }
+        .karakter-karti p {
+            font-size: 0.85em;
+            color: #999;
+            margin: 0;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: #050505;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #222;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENÜ -->
+    <nav>
+        <a href="index.html" class="logo">R.A. <span>Stories</span></a>
+        <a href="index.html">Rukiye Akbal-257351014</a>
+        <div class="menu-linkleri">
+            <a href="index.html">Ana Sayfa</a>
+            
+            <!-- GÖRSELLİ AÇILIR MENÜ (Eserler) -->
+            <div class="dropdown">
+                <span class="dropbtn">Eserler ▼</span>
+                <div class="dropdown-content">
+                    
+                    <!-- Dropdown İçindeki Kitap 1 -->
+                    <a href="kac.html">
+                        <img src="kac.jpeg.jpeg" alt="KAÇ Kapak" class="dropdown-gorsel">
+                        <span>KAÇ: Karanlıkta Saklananlar</span>
+                    </a>
+                    
+                    <!-- Dropdown İçindeki Kitap 2 -->
+                    <a href="mara.html">
+                        <img src="mara.jpeg.jpeg" alt="MARA Kapak" class="dropdown-gorsel">
+                        <span>MARA</span>
+                    </a>
+                    
+                    <!-- Dropdown İçindeki Kitap 3 -->
+                    <a href="kirik-zihinler.html">
+                        <img src="kirikzihinler.jpeg.jpeg" alt="Kırık Zihinler Kapak" class="dropdown-gorsel">
+                        <span>Kırık Zihinler</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <a href="hakkimda.html">Yazar Hakkında</a>
+        </div>
+    </nav>
+
+    <!-- ANA GİRİŞ -->
+    <section class="hero">
+        <h1>Kusursuz Karanlık</h1>
+    </section>
+
+    <!-- KİTAPLAR VİTRİNİ -->
+    <section class="bolum">
+        <h2 class="bolum-basligi">Eserler</h2>
+        <div class="kitap-grid">
+            
+            <!-- 1. KAÇ -->
+            <div class="kitap-karti">
+                <img src="kac.jpeg.jpeg" alt="KAÇ" class="kitap-gorsel">
+                <div class="kitap-bilgi">
+                    <h3>KAÇ: Karanlıkta Saklananlar</h3>
+                    <a href="kac.html" class="incele-buton">Detayları Gör</a>
+                </div>
+            </div>
+
+            <!-- 2. MARA -->
+            <div class="kitap-karti">
+                <img src="mara.jpeg.jpeg" alt="MARA" class="kitap-gorsel">
+                <div class="kitap-bilgi">
+                    <h3>MARA</h3>
+                    <a href="mara.html" class="incele-buton">Detayları Gör</a>
+                </div>
+            </div>
+
+            <!-- 3. KIRIK ZİHİNLER -->
+            <div class="kitap-karti">
+                <img src="kirikzihinler.jpeg.jpeg" alt="Kırık Zihinler" class="kitap-gorsel">
+                <div class="kitap-bilgi">
+                    <h3>Kırık Zihinler</h3>
+                    <a href="kirik-zihinler.html" class="incele-buton">Detayları Gör</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- YAZARIN FAVORİ KARAKTERLERİ -->
+    <section class="bolum" style="background-color: #111;">
+        <h2 class="bolum-basligi">Yazarın Favori Karakterleri</h2>
+        <div class="karakter-grid">
+            
+            <!-- Karakter 1 -->
+            <div class="karakter-karti">
+                <img src="bestekarahan.jpg" alt="Karakter 1" class="karakter-resim">
+                <h4>Beste Karahan</h4>
+                <p>KAÇ Evreni</p>
+            </div>
+
+            <!-- Karakter 2 -->
+            <div class="karakter-karti">
+                <img src="meragungoz.jpg" alt="Karakter 2" class="karakter-resim">
+                <h4>Mera Güngöz</h4>
+                <p>MARA Evreni</p>
+            </div>
+
+            <!-- Karakter 3 -->
+            <div class="karakter-karti">
+                <img src="verakarol.jpg" alt="Karakter 3" class="karakter-resim">
+                <h4>Vera Karol</h4>
+                <p>Kırık Zihinler Evreni</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Rukiye Akbal. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+</body>
+</html>
+

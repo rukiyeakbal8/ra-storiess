@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kırık Zihinler | R.A. Stories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .logo span {
+            color: #8b0000;
+        }
+        .menu-linkleri {
+            display: flex;
+            align-items: center;
+        }
+        .menu-linkleri > a {
+            color: #b3b3b3;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .menu-linkleri > a:hover {
+            color: #8b0000;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 30px;
+        }
+        .dropbtn {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .dropdown:hover .dropbtn {
+            color: #8b0000;
+        }
+        .dropdown-content {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            background-color: #1a1a1a;
+            min-width: 320px;
+            box-shadow: 0px 8px 25px 0px rgba(0,0,0,0.9);
+            z-index: 1;
+            top: 150%;
+            left: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+            border-top: 2px solid #8b0000;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+        .dropdown-content a {
+            color: #ccc;
+            padding: 15px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background-color: #000;
+            color: #fff;
+            padding-left: 25px;
+        }
+        .dropdown-gorsel {
+            width: 45px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #333;
+            transition: 0.3s ease;
+        }
+        .dropdown-content a:hover .dropdown-gorsel {
+            border-color: #8b0000;
+        }
+        .dropdown:hover .dropdown-content {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .kitap-tanitim {
+            display: flex;
+            padding: 80px 10%;
+            gap: 60px;
+            align-items: center;
+            background-color: #0d0d0d;
+            flex-wrap: wrap;
+        }
+        .tanitim-gorsel {
+            flex: 1;
+            min-width: 300px;
+        }
+        .tanitim-gorsel img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+        }
+        .tanitim-metin {
+            flex: 1.5;
+            min-width: 300px;
+        }
+        .tanitim-metin h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3em;
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .tanitim-metin h3 {
+            color: #8b0000;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .tanitim-metin p {
+            color: #ccc;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .kitap-kesit {
+            padding: 80px 10%;
+            background-color: #111;
+            border-top: 1px solid #222;
+        }
+        .kitap-kesit h2 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+        .kesit-metni-kutusu {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #b3b3b3;
+            font-size: 1.15em;
+            line-height: 2;
+            font-style: italic;
+            border-left: 3px solid #8b0000;
+            padding-left: 40px;
+        }
+        .kesit-metni-kutusu p {
+            margin-bottom: 25px;
+        }
+
+        footer {
+            background-color: #050505;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #222;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">R.A. <span>Stories</span></a>
+        <div class="menu-linkleri">
+            <a href="index.html">Ana Sayfa</a>
+            <div class="dropdown">
+                <span class="dropbtn">Eserler ▼</span>
+                <div class="dropdown-content">
+                    <a href="kac.html">
+                        <img src="kac.jpeg.jpeg" alt="KAÇ Kapak" class="dropdown-gorsel">
+                        <span>KAÇ: Karanlıkta Saklananlar</span>
+                    </a>
+                    <a href="mara.html">
+                        <img src="mara.jpeg.jpeg" alt="MARA Kapak" class="dropdown-gorsel">
+                        <span>MARA</span>
+                    </a>
+                    <a href="kirik-zihinler.html">
+                        <img src="kirikzihinler.jpeg.jpeg" alt="Kırık Zihinler Kapak" class="dropdown-gorsel">
+                        <span>Kırık Zihinler</span>
+                    </a>
+                </div>
+            </div>
+            <a href="hakkimda.html">Yazar Hakkında</a>
+        </div>
+    </nav>
+
+    <section class="kitap-tanitim">
+        <div class="tanitim-gorsel">
+            <img src="kirikzihinler.jpeg.jpeg" alt="Kırık Zihinler Kitap Kapağı">
+        </div>
+        <div class="tanitim-metin">
+            <h1>Kırık Zihinler</h1>
+            <h3>Bir Delilik Labirenti</h3>
+            
+            <!-- BURAYA KİTABININ TANITIM YAZISINI YAZABİLİRSİN -->
+            <p>❝Bazı ruhlar karanlığa mahkûm doğar. Bazıları ise ona kendi isteğiyle teslim olur. ❞
+
+Bir katilin gözleriyle tanıştığında, kaderinin çoktan yazıldığını fark edersin. O, çift kişiliğe sahip bir adamdı. Bir yanı karanlığa hükmederken, diğer yanı o karanlığın içinde kayboluyordu.
+
+Vera Karol... Babasını, akli dengesi yerinde olmayan suçluların tutulduğu Tormentum'da ziyaret eden, ama kendi içinde kapanmamış yaralar taşıyan bir dövme sanatçısıydı.
+
+Karanlık ve aydınlığın, cellat ile kurbanın, masumiyet ile günahın birbirine karıştığı bu kanlı satranç oyununda tek bir kural var:
+
+Şeytanın elini tutarsan, yanmayı göze alacaksın.
+
+Bazı hikâyelerde iyiler kazanmazdı. Çünkü bazı kadınlar, kendilerini kurtaracak o beyaz şövalyeyi değil; ellerini kana bulamaktan çekinmeyen şeytanın ta kendisini seçerdi.
+
+"Bazı insanlar karanlıkta yaşamayı seçer, çünkü aydınlık, gölgelerinden korkmalarına neden olur, Vera mea."</p>
+
+        </div>
+    </section>
+
+    <section class="kitap-kesit">
+        <h2>Çobanın Sürüsünden Düşenler</h2>
+        
+        <div class="kesit-metni-kutusu">
+            <!-- BURAYA İLK BÖLÜMÜN KESİTİNİ YAZABİLİRSİN -->
+            <p>Karanlıkla doğanlar, karanlıkla büyürler. 
+
+Karanlık zihinler ise gün yüzüne çıkmayı bekler. Karanlık, her insanın içindedir. Yüzü gülenler, iyilik timsali olanların da karanlık yüzleri her zaman vardır.
+
+Karanlık zihinler ise sayfaya düşen bir mürekkep damlası gibidir; her yere yayılır ve ne zaman duracağını bilmez. Bulaştıkça bulaşır ve seni yok etmeyi bekler ya da ona hükmetmeni. Bir lanet gibi sana bulaşır ve yok olmaz. O her zaman seninledir; arkanda, önünde, sağında ve solunda. Yukarı bak. Şimdi ise aşağı, o her yerde. Yok olmayacak. Çok çabuk unutursun ama kalbine damlamıştır o karanlık; seni ve dönüşeceğin kişiyi bitirmeden de durmaz.
+
+Kaçma. O her yerde biliyorsun.
+
+Adem ve Havva, yedikleri bir elma, yedikleri ne olursa olsun, sayesinde cennetten atılmışlardı. Kuralları çiğnemişlerdi ve sonuçlarına katlanmışlardı. Tanrı, Havva'ya doğurma cezasını verdi; dünyaya yeni bir can getirmesini ve bunu yerine getirirken acısını çekmesini istedi. Dokuz ay rahmindeki tohumu büyüttü ve dünyaya getirdi. Adem'e ise zorluğu verdi; cennette her şey ayaklarının altındayken dünyada her şeyi zorlu emekleriyle yerine getirmesi ve bunun sonucunda istediğine ulaşmasını sağladı. Bir tarafın cezası diğerinden daha ağırdı.
+
+Karanlık her zaman vardı ve daha çok büyüyordu, büyümeye devam ediyordu. Ve kurallar her zaman çiğnenirdi, bu kendi kuralların olsa bile.
+
+Bizler toprak ve sudan yaratılmıştık. Ateşten değil, belki de ateşten de bir parça girmişti yaratılışımıza ya da karanlıktan.
+
+Dünyada insanlar üç kısma ayrılırdı; iyi olanlar, kötü olanlar ve ne iyi ne de kötü olanlar. Ya da kendini zeki sanan iki yüzlü kötüleri de sayabilirdik. Karanlık her zaman vardı; yok dediğimiz an bile bizler karanlıkla doğmuştuk ve karanlıkla büyüyenlerdik.
+
+Anne "öl" demişti, babam ise "yaşa". Anneler evlatlarına daha düşkün derlerdi ama bu, benim annemi kapsamıyordu. Anne, karanlığın dibine batmış bir ruhtu; babam ise onu oradan çıkarmaya çalışan bir şövalyeydi. 
+
+Küçükken anne, anne diye ağlamazdım; babam, babam diye yeri göğü yıkardım. Babamın anneye olan aşkını o kadar çok kıskanırdım ki, anneye düşmanım gibi davranırdım. Tabii, anne ben doğar doğmaz beni düşmanı ilan etmişti. 
+
+Anne, rahminde hiçbir zaman beni istememişti; aynı dünyaya getirdikten sonrası gibi de. Ben doğduğumda, beni emzirmemiş, kucağına almamış bir anneydi. Annem diyemezdim; bu, babamın benim üzerimdeki hakkına saygısızlıktı. Beni emzirmeyen, bir kez bile kucağına almayan kadına nasıl annem diyebilirdim ki? Anne ve babam, bağımlılığı önlemek adına kurulmuş bir kurumda tanışmışlardı. Anne, ağır uyuşturucu bağımlılığından kurtulmak için bu kuruma girmiş ve tedavi edilmeye başlamıştı. Babam ise orada çalışan doktorlardan biriydi. 
+
+Babamın anlattıklarına göre böyle bir yerde tanışmışlardı. Babam, anneyi o bataklıktan çıkardığını düşünmüş ve ona aşık olmuştu. Bir yıl sonra evlenmişlerdi. Babam, annenin psikolojik sorunlarının bitmiş olduğunu ve artık iyileştiğini düşünerek bir yuva kurmak istemişti; nasıl bir karanlığa girdiğini bilemeyerek.
+
+1999'lu yıllarda anne bana hamile kaldığında ise dünyalarına karanlık çökmüştü çünkü anne, dünyaya bir çocuk getiremeyeceğini ve babamı bir çocukla bölüşmek istemediğini söylemişti. Tüm ilginin kendisinin üzerinde olmasını severmiş. Babam, bu bebeği istediğini belirtmiş ama anne, beni doğurmamak için her şeyi yapmış; ben ise yaşamak için annenin rahmine tutunmuşum.
+
+Ben, annenin karnında büyürken, onun psikolojik sorunları yeniden başlamış ve bu sefer daha büyük sorunlar ortaya çıkmıştı. Babam bunu fark ettiğinde işten ayrılmış ve anneme göz kulak olmaya çalışmıştı. Annenin hamileliği, birçok intihar denemesi ile sonuçlanmıştı. Babam, sevdiği kadının böyle davranmasına katlanamamış ve bir kliniğe yatması için elinden geleni yapmıştı. Anne, beni bir kliniğin soğuk zemininde doğurmuş ve babama düzeldiği yalanlarını söyleyerek artık buradan çıkarmasını istemişti. Babam, benim doğumumdan sonra annenin psikolojik sorunlarının bebekle düzeleceğini düşünerek anneyi yeniden eve getirmişti.
+
+Annenin asıl psikolojik sorunu bendim; bunu bana çok güzel şekillerde kanıtlamıştı. Gözlerimin derinliklerine bakarak beni birçok defa öldürme girişimlerini unutamazdım. Beni küçük bir bebekken bile öldürmeye çalıştığına emindim. Annenin gözünde ben, kocasıyla kendisinin arasına giren bir bariyerdim.
+
+Şimdi ise birçok öldürülme girişiminin ardından hayattaydım. Geçmişim karanlıktı ve geleceğim daha da karanlıktı. Çünkü ben karanlıkla doğmuştum ve karanlıkla büyümüştüm.
+
+Beni düşmanı gören kadın artık hayatta değildi. O giderken babamı da benden almıştı. Karanlığını babama da bulaştırmıştı. O katran karası bataklığa babamı da çekmekle kalmamış, kendisi batarken babamın elini tutarak, onu da bataklığın en dibine çekmişti.
+
+Annem mezardaydı, babam ise psikolojik durumu iyi olmayan suçluların bulunduğu bir ruh ve sinir hastalıkları ya da onların dediği gibi adli psikiyatri hastanesinde yatıyordu. Bu yer, özel kuvvetler tarafından korunup sadece ayda bir kere görüş yapılabilen bir yerdi. Ülkemizde beş yıl önce kurulan bu yerin adı TORMENTUM'du. Babam, ilk girdiği yıllarda her gün onu görmek istemem ve Tormentum'a gitmem askerlerin dikkatinden kaçmamıştı. Bana onu sadece ayda bir kez göreceğimi çok güzel bir şekilde anlatmışlardı. Hayır, bunu bana bende travma bırakacak bir şekilde anlatmışlardı.
+
+Babamın oradan çıkması için her zaman her şeyi yapmıştım ama onu oradan çıkarmam imkansızdı, çünkü babam müebbet hapis cezasına çarptırılmıştı. Ancak öldükten sonra babamı Tormentum'dan çıkarırlardı. Babam Kenan Karol, anne denilen o kadın yüzünden katran karası bataklığa batmıştı. Babamı ne kadar oradan kurtarmak istesem de bunun imkansız olduğunu biliyordum.
+
+Tormentum, akıl sağlığı yerinde olmayan ve ağır suç işleyen kişilerin kaldığı bir hastane gibi görünse de aslında bir cezaevi olup içerideki mahkumların üzerinde deneyler yapılan bir yerdi. Bu yüzden özel kuvvetler tarafından korunuyordu. İçeride ağır derece akli dengesi yerinde olmayan ya da psikolojik hastaları olduğu için eğitimli askerler ve güvenlikler vardı. Doktorlar ve hemşireler de özel eğitimlilerdi. Devlet bu yeri açtığında sadece küçük bir yer sanıyorduk ama değildi. Kalın beton duvarları olan ve bu duvarların en az yirmi metre yüksekliğinde olduğu bir kapandı.
+
+Mahkumları birer deney olarak kullanan bir yerdi Tormentum. Devlet ise buna izin veriyordu, çünkü işine yarıyordu. Müebbet hapse mahkum olmuş bir kişinin deneylere kurban gitmesi devlet için bir sorun değildi, işlerine yarıyordu bu yer.
+
+Babamdan ayrı geçirdiğim yıllarda yaşlı olan babaannemin yanında kalmıştım. On yedi yaşıma geldiğimde ise vefat etmişti. Babaannem beni severdi, tek oğlundan olan torunuydum. Beni çocuğu yerine koyup büyütmüştü. Şimdi o da soğuk toprağın altındaydı. O soğuk toprağın altına anneyi de bırakmıştık. Anne gömülürken babam yoktu çünkü babam cezaevine girmişti ve orada yerinde olmayan psikolojisini de kaybetmişti.
+
+Bu yüzden her zaman dediğim gibi, biz karanlıkla doğanların ve karanlıkla büyüyenlerin hiçbir zaman geleceği parlak olmazdı. Gelecek bizler için karanlık ve dipsiz bir kuyuydu.</p>
+            
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Rukiye Akbal. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yazar Hakkında | R.A. Stories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* GENEL AYARLAR */
+        body {
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* ÜST MENÜ (Aynı kaldı) */
+        nav {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .logo span {
+            color: #8b0000;
+        }
+        .menu-linkleri {
+            display: flex;
+            align-items: center;
+        }
+        .menu-linkleri > a {
+            color: #b3b3b3;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .menu-linkleri > a:hover {
+            color: #8b0000;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 30px;
+        }
+        .dropbtn {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .dropdown:hover .dropbtn {
+            color: #8b0000;
+        }
+        .dropdown-content {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            background-color: #1a1a1a;
+            min-width: 320px;
+            box-shadow: 0px 8px 25px 0px rgba(0,0,0,0.9);
+            z-index: 1;
+            top: 150%;
+            left: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+            border-top: 2px solid #8b0000;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+        .dropdown-content a {
+            color: #ccc;
+            padding: 15px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background-color: #000;
+            color: #fff;
+            padding-left: 25px;
+        }
+        .dropdown-gorsel {
+            width: 45px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #333;
+            transition: 0.3s ease;
+        }
+        .dropdown-content a:hover .dropdown-gorsel {
+            border-color: #8b0000;
+        }
+        .dropdown:hover .dropdown-content {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* YAZAR HAKKINDA ALANI */
+        .hakkimda-alani {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 10%;
+            gap: 80px;
+            flex-wrap: wrap;
+        }
+        
+        /* Profil Fotoğrafı Kısmı */
+        .yazar-gorsel {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+        .yazar-gorsel img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #333;
+            box-shadow: -15px 15px 0px rgba(139, 0, 0, 0.5); /* Kırmızı gölge efekti */
+            transition: 0.3s ease;
+        }
+        .yazar-gorsel img:hover {
+            transform: translateY(-5px);
+            box-shadow: -15px 15px 0px rgba(139, 0, 0, 0.8);
+        }
+
+        /* Yazar Bilgi Kısmı */
+        .yazar-bilgi {
+            flex: 1.5;
+            min-width: 300px;
+        }
+        .yazar-bilgi h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5em;
+            color: #fff;
+            margin: 0 0 10px 0;
+        }
+        .yazar-bilgi h3 {
+            color: #8b0000;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+        .yazar-metin {
+            color: #b3b3b3;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .yazar-metin p {
+            margin-bottom: 15px;
+        }
+
+        /* İletişim / Sosyal Medya Butonları */
+        .sosyal-medya {
+            display: flex;
+            gap: 20px;
+        }
+        .sosyal-buton {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: transparent;
+            color: #ccc;
+            border: 1px solid #333;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .sosyal-buton:hover {
+            border-color: #8b0000;
+            color: #fff;
+            background-color: rgba(139, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #050505;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #222;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENÜ -->
+    <nav>
+        <a href="index.html" class="logo">R.A. <span>Stories</span></a>
+        <div class="menu-linkleri">
+            <a href="index.html">Ana Sayfa</a>
+            <div class="dropdown">
+                <span class="dropbtn">Eserler ▼</span>
+                <div class="dropdown-content">
+                    <a href="kac.html">
+                        <img src="kac.jpeg.jpeg" alt="KAÇ Kapak" class="dropdown-gorsel">
+                        <span>KAÇ: Karanlıkta Saklananlar</span>
+                    </a>
+                    <a href="mara.html">
+                        <img src="mara.jpeg.jpeg" alt="MARA Kapak" class="dropdown-gorsel">
+                        <span>MARA</span>
+                    </a>
+                    <a href="kirik-zihinler.html">
+                        <img src="kirikzihinler.jpeg.jpeg" alt="Kırık Zihinler Kapak" class="dropdown-gorsel">
+                        <span>Kırık Zihinler</span>
+                    </a>
+                </div>
+            </div>
+            <a href="hakkimda.html" style="color: #8b0000;">Yazar Hakkında</a>
+        </div>
+    </nav>
+
+    <!-- YAZAR HAKKINDA BÖLÜMÜ -->
+    <section class="hakkimda-alani">
+        
+        <div class="yazar-gorsel">
+            <!-- BURAYA KENDİ FOTOĞRAFININ VEYA ESTETİK BİR GÖRSELİN ADINI YAZ (Örn: yazar.jpg) -->
+            <img src="yazargr.jpg" alt="Rukiye Akbal Profil">
+        </div>
+
+        <div class="yazar-bilgi">
+            <h1>Rukiye Akbal</h1>
+            <h3>"Bir yanım devlet devirir,
+                bir yanım kendine yenilir."</h3>
+            
+            <div class="yazar-metin">
+                <!-- BURAYA KENDİ BİYOGRAFİNİ YAZABİLİRSİN -->
+                <p>Kelimelerin gücüne ve karanlığın içinde saklanan gerçeklere inanıyorum. Gündüzleri sıradan bir dünyanın parçasıyken, geceleri yeraltı dünyasının, tehlikeli karakterlerin ve kırık zihinlerin hikayelerini yazıyorum.</p>
+                
+                <p>Kalemimden dökülen her satır, okuyucuyu güvenli sınırlarının dışına çıkarmayı ve psikolojik bir labirentin içine çekmeyi amaçlıyor. <em>KAÇ</em>, <em>MARA</em> ve <em>Kırık Zihinler</em> evrenlerinde, sadece hayatta kalanların değil, aynı zamanda karanlığı kucaklayanların hikayesini bulacaksınız.</p>
+                
+                <p>Eğer gölgelerden korkmuyorsanız, doğru yerdesiniz.</p>
+            </div>
+
+            <div class="sosyal-medya">
+                <a href="#" class="sosyal-buton">Wattpad</a>
+                <a href="#" class="sosyal-buton">Instagram</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Rukiye Akbal. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+</body>
+</html>

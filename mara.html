@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARA | R.A. Stories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .logo span {
+            color: #8b0000;
+        }
+        .menu-linkleri {
+            display: flex;
+            align-items: center;
+        }
+        .menu-linkleri > a {
+            color: #b3b3b3;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .menu-linkleri > a:hover {
+            color: #8b0000;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 30px;
+        }
+        .dropbtn {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .dropdown:hover .dropbtn {
+            color: #8b0000;
+        }
+        .dropdown-content {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            background-color: #1a1a1a;
+            min-width: 320px;
+            box-shadow: 0px 8px 25px 0px rgba(0,0,0,0.9);
+            z-index: 1;
+            top: 150%;
+            left: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+            border-top: 2px solid #8b0000;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+        .dropdown-content a {
+            color: #ccc;
+            padding: 15px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background-color: #000;
+            color: #fff;
+            padding-left: 25px;
+        }
+        .dropdown-gorsel {
+            width: 45px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #333;
+            transition: 0.3s ease;
+        }
+        .dropdown-content a:hover .dropdown-gorsel {
+            border-color: #8b0000;
+        }
+        .dropdown:hover .dropdown-content {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .kitap-tanitim {
+            display: flex;
+            padding: 80px 10%;
+            gap: 60px;
+            align-items: center;
+            background-color: #0d0d0d;
+            flex-wrap: wrap;
+        }
+        .tanitim-gorsel {
+            flex: 1;
+            min-width: 300px;
+        }
+        .tanitim-gorsel img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+        }
+        .tanitim-metin {
+            flex: 1.5;
+            min-width: 300px;
+        }
+        .tanitim-metin h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3em;
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .tanitim-metin h3 {
+            color: #8b0000;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .tanitim-metin p {
+            color: #ccc;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .kitap-kesit {
+            padding: 80px 10%;
+            background-color: #111;
+            border-top: 1px solid #222;
+        }
+        .kitap-kesit h2 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+        .kesit-metni-kutusu {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #b3b3b3;
+            font-size: 1.15em;
+            line-height: 2;
+            font-style: italic;
+            border-left: 3px solid #8b0000;
+            padding-left: 40px;
+        }
+        .kesit-metni-kutusu p {
+            margin-bottom: 25px;
+        }
+
+        footer {
+            background-color: #050505;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #222;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">R.A. <span>Stories</span></a>
+        <div class="menu-linkleri">
+            <a href="index.html">Ana Sayfa</a>
+            <div class="dropdown">
+                <span class="dropbtn">Eserler ▼</span>
+                <div class="dropdown-content">
+                    <a href="kac.html">
+                        <img src="kac.jpeg.jpeg" alt="KAÇ Kapak" class="dropdown-gorsel">
+                        <span>KAÇ: Karanlıkta Saklananlar</span>
+                    </a>
+                    <a href="mara.html">
+                        <img src="mara.jpeg.jpeg" alt="MARA Kapak" class="dropdown-gorsel">
+                        <span>MARA</span>
+                    </a>
+                    <a href="kirik-zihinler.html">
+                        <img src="kirikzihinler.jpeg.jpeg" alt="Kırık Zihinler Kapak" class="dropdown-gorsel">
+                        <span>Kırık Zihinler</span>
+                    </a>
+                </div>
+            </div>
+            <a href="hakkimda.html">Yazar Hakkında</a>
+        </div>
+    </nav>
+
+    <section class="kitap-tanitim">
+        <div class="tanitim-gorsel">
+            <img src="mara.jpeg.jpeg" alt="MARA Kitap Kapağı">
+        </div>
+        <div class="tanitim-metin">
+            <h1>MARA</h1>
+            <h3>Meleğin Şeytana Dönüşme Hikayesi</h3>
+            
+            <!-- BURAYA KİTABININ TANITIM YAZISINI YAZABİLİRSİN -->
+            <p>Burası kanunların bittiği yer. Burası MARA.
+
+On yaşında ablası çalınan küçük bir kız çocuğu değildi artık. O, kendi masumiyetini bir silahla takas etmiş, ruhunu intikamla bilemiş bir KARA MELEK.
+
+Mina Güngöz, yerin yedi kat altındaki o cehenneme, Mara Çetesi'nin kalbine kendi isteğiyle yürüdü. Amacı belliydi: Kayıp ablasını bulmak ve Şeytan'ın saltanatını kanla yıkmak. Dilsiz duvarlar, beyaz önlükler ve maskeli yüzler arasında hayatta kalmak zorundaydı.
+
+Ancak av, avcının inine girdiğinde kurallar değişir. Mina, İblis'in gözlerinin içine baktığında sadece bir düşman değil, kendi ruhunun karanlık yansımasını da görecekti.
+
+Plan basitti: Sız, bul, yok et. 
+Gerçek ise kanlıydı: Aşık ol, parçalan, yine de tetiği çek.
+
+❝ᴋᴀɴᴀ ʙᴜʟᴀɴᴍış ʙɪʀ ᴍᴇʟᴇᴋ, ᴛᴀşʟᴀşᴍış ʙɪʀ şᴇʏᴛᴀɴᴅᴀɴ ᴅᴀʜᴀ ᴛᴇʜʟɪᴋᴇʟɪᴅɪʀ.❞</p>
+        </div>
+    </section>
+
+    <section class="kitap-kesit">
+        <h2>Onun da Canı Yanar</h2>
+        
+        <div class="kesit-metni-kutusu">
+            <!-- BURAYA İLK BÖLÜMÜN KESİTİNİ YAZABİLİRSİN -->
+            <p>Bana "Mina" dediler, ama ben Mera'ydım.
+Bana "Kurban" dediler, ama ben Cellattım.
+Bana "Beyaz" dediler, ama ben içimdeki karanlıkla geldim.
+
+Onlar, on yaşında bir kız çocuğunun hayallerini çaldılar. Ben, on sekiz yaşında bir kadın olarak imparatorluklarını yıkmaya geldim. Ablamın kokusunun sindiği o sokakların hesabını sormadan, o Ejderha'nın son nefesini kestiğimi görmeden ölmeyeceğim.
+
+Burası MARA.
+
+Burada duvarlar beyaz, ruhlar siyahtır.
+
+Ve ben, o beyazlığı kendi kanımla değil, onların kanıyla boyamaya yemin ettim.
+
+Şeytanın huzuruna çıkmaya hazırım. Peki ya Şeytan, Kara Melek'le yüzleşmeye hazır mı?
+
+•••
+
+Karakolun o boğucu, soğuk ve metalik havasından kendimi dışarı attığımda, ciğerlerime dolan keskin iyot kokusu bile ruhumdaki ağırlığı hafifletmeye yetmemişti. Ayaklarım beni ruhsuz bir mekanizmayla sahil kenarına sürükledi. Zihnimin içindeki gürültüyü susturabilmek umuduyla boş banklardan birine çöktüm.
+
+Karşımda uzanan deniz, zifiri bir karanlığın içinde hırçın pençelerini kıyıya geçiriyordu. Dalgaların o ritmik, sert vuruşlarını izlerken, her bir köpüğün kayalarda parçalanışını kendi iç dünyamın bir yansıması gibi seyrettim. Gökyüzü üzerime çökecekmiş gibi ağır, deniz ise tüm sırlarımı yutacak kadar derindi.
+Beş on dakika geçmişti ki, yanımda bir boşluğun dolduğunu hissettim.
+
+Buz gibi bir esintiyle birlikte bir yabancı oturdu yanıma. Tepeden tırnağa siyahlara bürünmüş, varlığıyla yokluğu arasındaki ince çizgide duran bir adam... Yüzünü siyah bir maske gizliyordu, başındaki kapüşon ise onu gecenin bir parçası haline getirmişti. Kim olduğu, nereden geldiği belirsizdi; tekinsiz bir gölge gibi sızmıştı sessizliğime.
+
+Adamın sesi, dalga seslerini bıçak gibi keserek kulaklarıma ulaştı:
+"Dalgalar insan gibidir, bilir misin? Oradan oraya savrulurlar ama kime çarptıklarını, kimi yaraladıklarını asla bilmezler. Sen de mi öylesin küçük kız? Sen de mi nereye savrulduğunu, bu hırçın suyun seni hangi uçuruma sürüklediğini bilmiyorsun?"
+Sözleri, zihnimin karanlık köşelerinde yankılandı. Şaşırmıştım ama bu şaşkınlık bir korku doğurmadı içimde. 
+
+Belki Mara çetesindendi, belki de yolunu kaybetmiş bir başka ruhtu; dürüst olmak gerekirse o an ölümün soğuk nefesi bile umurumda değildi. Başımı yavaşça ona doğru çevirdiğimde, maskesinin üzerinde parlayan siyah güneş gözlüklerini gördüm. Gecenin kör karanlığında güneş gözlüğü takıyordu; sanki dünyayı görmeyi reddediyor ya da dünyanın onu görmesinden ölesiye kaçıyordu. Bir suçlu muydu, yoksa herkesten saklanan bir hayalet mi? Bilmiyordum. Ancak o gizemli ses tonundaki derinlik, ruhumun paslı tellerine dokunmayı başarmıştı.
+
+Gözlerimi, içindeki o bitmek bilmeyen asilikle gözlüklerinin arkasındaki görünmez gözlerine diktim. Tek bir kelime bile etmeyecektim. Dilimin ucuna kadar gelen binlerce cümleyi susturdum. Ben buraya bir yabancıyla dertleşmeye değil, sadece anıların ağırlığı altında ezilmeye gelmiştim. Ablam geldi aklıma; onun denize olan o sonsuz, çocuksu tutkusu... Denizin her dalgasında onun bir parçasını arar gibi bakıyordum o karanlık suya. Buradaydım çünkü o, bu hırçınlığı severdi.
+
+Adam, buz gibi sessizliğimi bir kabullenişle karşılamış olmalıydı. Konuşmayacağımı, bu dilsiz direnişimi bozmayacağımı anladı. Bir süre, sanki asırlardır orada birlikte oturuyormuşuz gibi sessizce izledik denizi. Sonra, geldiği gibi ansızın, hiçbir iz bırakmadan ayağa kalktı ve karanlığın içinde eriyip gitti.
+Saniyeler sonra arkamı dönüp baktığımda, geride sadece boş bir karanlık kalmıştı. Kimse yoktu. Ne bir ayak sesi, ne bir kıpırtı... Sanki o bankta az önce bir adam oturan ben değilmişim gibi, her şey bir anda silinmişti. Aklım bana oyunlar mı oynuyordu? Yoksa acımdan dolayı hayaller mi görmeye başlamıştım? 
+
+Kendi zihnimin labirentlerinde kayboluyormuşum gibi dehşet verici bir his kapladı içimi. Belki de o adam hiç var olmamıştı, sadece benim karanlığımın vücut bulmuş haliydi.
+Titreyen ellerimle yan tarafa, onun az önce oturduğu yere baktım. 
+
+Gözlerim karanlığa alışmaya çalışırken, bankın üzerinde beyaz bir kağıt parçasının rüzgarda hafifçe havalandığını gördüm. Kalbim, o kağıdın varlığıyla tekinsiz bir ritimle çarpmaya başladı.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Rukiye Akbal. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+</body>
+</html>

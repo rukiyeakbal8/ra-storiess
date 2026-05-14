@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAÇ: Karanlıkta Saklananlar | R.A. Stories</title>
+    <!-- Estetik Yazı Tipleri -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* GENEL AYARLAR */
+        body {
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* ÜST MENÜ (Ana sayfadaki ile aynı) */
+        nav {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .logo span {
+            color: #8b0000;
+        }
+        .menu-linkleri {
+            display: flex;
+            align-items: center;
+        }
+        .menu-linkleri > a {
+            color: #b3b3b3;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .menu-linkleri > a:hover {
+            color: #8b0000;
+        }
+
+        /* GÖRSELLİ AÇILIR MENÜ (Ana sayfadaki ile aynı) */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 30px;
+        }
+        .dropbtn {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .dropdown:hover .dropbtn {
+            color: #8b0000;
+        }
+        .dropdown-content {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            background-color: #1a1a1a;
+            min-width: 320px;
+            box-shadow: 0px 8px 25px 0px rgba(0,0,0,0.9);
+            z-index: 1;
+            top: 150%;
+            left: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+            border-top: 2px solid #8b0000;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+        .dropdown-content a {
+            color: #ccc;
+            padding: 15px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background-color: #000;
+            color: #fff;
+            padding-left: 25px;
+        }
+        .dropdown-gorsel {
+            width: 45px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #333;
+            transition: 0.3s ease;
+        }
+        .dropdown-content a:hover .dropdown-gorsel {
+            border-color: #8b0000;
+        }
+        .dropdown:hover .dropdown-content {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 1. BÖLÜM: KİTAP TANITIM ALANI (Kapak ve Yazı Yanyana) */
+        .kitap-tanitim {
+            display: flex;
+            padding: 80px 10%;
+            gap: 60px;
+            align-items: center;
+            background-color: #0d0d0d;
+            flex-wrap: wrap; /* Ekran küçülürse alt alta geçsin */
+        }
+        .tanitim-gorsel {
+            flex: 1;
+            min-width: 300px;
+        }
+        .tanitim-gorsel img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+        }
+        .tanitim-metin {
+            flex: 1.5;
+            min-width: 300px;
+        }
+        .tanitim-metin h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3em;
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .tanitim-metin h3 {
+            color: #8b0000;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .tanitim-metin p {
+            color: #ccc;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* 2. BÖLÜM: İLK BÖLÜM KESİTİ (Okuma Alanı) */
+        .kitap-kesit {
+            padding: 80px 10%;
+            background-color: #111;
+            border-top: 1px solid #222;
+        }
+        .kitap-kesit h2 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+        .kesit-metni-kutusu {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #b3b3b3;
+            font-size: 1.15em;
+            line-height: 2;
+            font-style: italic; /* Hikaye havası vermek için eğik yazı */
+            border-left: 3px solid #8b0000;
+            padding-left: 40px;
+        }
+        .kesit-metni-kutusu p {
+            margin-bottom: 25px;
+        }
+
+        footer {
+            background-color: #050505;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #222;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENÜ (Burası hiç değişmedi, ana sayfadakiyle aynı) -->
+    <nav>
+        <a href="index.html" class="logo">R.A. <span>Stories</span></a>
+        <div class="menu-linkleri">
+            <a href="index.html">Ana Sayfa</a>
+            <div class="dropdown">
+                <span class="dropbtn">Eserler ▼</span>
+                <div class="dropdown-content">
+                    <a href="kac.html">
+                        <img src="kac.jpg" alt="KAÇ Kapak" class="dropdown-gorsel">
+                        <span>KAÇ: Karanlıkta Saklananlar</span>
+                    </a>
+                    <a href="mara.html">
+                        <img src="mara.jpg" alt="MARA Kapak" class="dropdown-gorsel">
+                        <span>MARA</span>
+                    </a>
+                    <a href="kirik-zihinler.html">
+                        <img src="kirikzihinler.jpg" alt="Kırık Zihinler Kapak" class="dropdown-gorsel">
+                        <span>Kırık Zihinler</span>
+                    </a>
+                </div>
+            </div>
+            <a href="hakkimda.html">Yazar Hakkında</a>
+        </div>
+    </nav>
+
+    <!-- KİTAP TANITIM ALANI (Kapak ve Arka Kapak Yazısı) -->
+    <section class="kitap-tanitim">
+        <div class="tanitim-gorsel">
+            <img src="kac.jpeg.jpeg" alt="KAÇ Kitap Kapağı">
+        </div>
+        <div class="tanitim-metin">
+            <h1>KAÇ</h1>
+            <h3>Karanlıkta Saklananlar</h3>
+            
+            <!-- BURAYA KİTABININ TANITIM YAZISINI YAZABİLİRSİN -->
+            <p>❝Seninle yok oluyorum görmüyor musun?  
+Küllerimiz aynı rüzgâra karışırken,  
+Biz zaten hiç var olmadık...❞</p>
+            <p>Beste Karahan, evdeki şiddetten kaçarken kaderiyle çarpıştı: Kutay Demir, sapkın aşkı ve işkenceleriyle ünlü bir seri katildi. Babasının kız kaçakçılığı çetesinden öğrendikleriyle, kurbanlarına acımasızca bağlanıyordu-reddedildiğinde ise ölümcül bir intikam döngüsü başlıyordu.  </p>
+            
+        </div>
+    </section>
+
+    <!-- KİTAPTAN KESİT ALANI (İlk Bölüm) -->
+    <section class="kitap-kesit">
+        <h2>1. Bölümden Kesit</h2>
+        
+        <div class="kesit-metni-kutusu">
+            <!-- BURAYA İLK BÖLÜMÜN KESİTİNİ YAZABİLİRSİN -->
+            <p>Demir parmaklıkların soğuk ve paslı yüzeyine doğru yavaş adımlarla yaklaştı. Adımlarının sert tınısı, beton zemin üzerinde yankılanırken her bir sesi içimde ayrı bir korku ve çaresizlik doğuruyordu. Cebinden çıkardığı anahtarlar, soğuk demirle sürtünürken çıkan tiz sesler, bir sonun başlangıcını haber veriyordu adeta. Kapının kilidini açtı; gıcırdayan menteşelerin sesi, sessizliğin ortasında boğuk bir çığlık gibiydi. Siyah parlak ayakkabılarıyla içeri girdiğinde kalbim göğsümde deli gibi atmaya başladı.
+
+O an gözlerine baktım, korku dolu, savunmasız gözlerimle. Onların içinde var olan en ufak bir umut kırıntısını bile parçalayacak kadar derin ve karanlık bir bakış vardı onda. Dudakları hafifçe kıvrıldı; gamzeleri, yüzüne tuhaf bir masumiyet katıyordu ama bu masumiyetin ardında ölümün soğuk nefesi vardı. Yanıma doğru yavaşça yaklaştı, siyah ayakkabılarının sert tıkırtıları sanki adımlarını sayıyordu.
+
+Ve konuştu. Sesi, fısıltı ile tehdit arasında gidip gelen bir soğuklukla doluydu:
+“Küçük kızım, sen böyle korku dolu gözlerle bana bakarsan seni bırakmam.”
+
+O sözler beynimde yankılanırken neye uğradığımı şaşırdım. Gözlerim büyüdü, ben de geriye doğru adım atmaya başladım. O ilerledikçe ben çekiliyordum, ondan kaçmaya çalışan bir ceylan gibi… Her adımı, içimde büyüyen o karanlık fırtınayı daha da şiddetlendiriyordu.
+
+O siyahtı. Gerçekten siyahtı. Karşımda duran, bütün varlığıyla karanlığın ta kendisiydi. Ve ben biliyordum ki beni kendi siyahlığına bulayacaktı. İçimdeki en masum ve saf yanımı söküp alacak, beni kendi karanlığında kaybettirecekti. Geri adım atarken arkamdaki sert yüzeyle temas ettim; duvarın soğukluğunu tenimde hissettim.
+
+Yanıma geldi, elleri soğuktu ama dokunuşu beni yakıyordu. Ölü toprak rengindeki saçlarımı nazikçe okşadı. Saçlarımı yana çekerek boynumu açığa çıkardı. O anda nefesimin kesildiğini fark ettim. Boynuma doğru eğildi, kokumu içine çekti.
+
+“Nefes al, küçük kız.” dedi, sesinde soğuk ama hükmeden bir ton vardı.
+
+Nefes almaya başladım ama hâlâ korkuyordum. O adamın kokusu, ölümün ve kanın kokusuydu. Ciğerlerime dolan o koku, beni içeriden kemiren bir zehir gibiydi. O koku, benim sonumdu, bunu biliyordum.
+
+Başını kaldırdı ve gözlerime baktı. O anda gözlerimden yaşlar aktığını fark ettim; o yaşların sebebi korku değildi, o ölüm kokusunun yarattığı çaresizlikti.
+
+Ellerini saçlarıma uzattı, onları geriye doğru çekti. İçimden boğuk bir inleme yükseldi, istemsizce ağzımdan çıktı. Saç tellerim çok inceydi, dokunuşu derin bir acı yaratıyordu. Gözyaşlarım hızla akmaya başladı.
+
+Sonra sinirle bağırmaya başladı, sesi tırnak gibi içime kazınıyordu:
+“Sen kendini çok mu akıllı zannediyorsun? O kamerayı kırdın ama her yerde kamera var, küçük kız. Soluna bak, küçücük bir kamera var. Onlardan çok fazla var, biliyor musun? O aklını alırım senin! Yok ederim! Bir daha ‘Yapmayacağım efendim’ diyeceksin, hadi! Bakma böyle yüzüme!”
+
+O deliliği görmüştüm, gözleri parıldıyordu. Psikopat bir ateşle yanıyordu.
+
+Korkuyla gözlerimi kapattım, daha çok ağlamaya başladım. O beni duvara sertçe itti. Saçımı acımasızca çekmeye başladı, acıdan ne yaptığımı bile anlamadım.
+
+“Bir daha yapmayacağım, efendim.” dedim, sesi titreyerek ve teslimiyetle. Ama o kelimeler, boyun eğdiğimi göstermiyordu içten içe; sadece hayatta kalma çabamdı.
+
+Bunu duyunca sinsice güldü ve tekrar saçlarımı çekti.
+
+Sonra beni sertçe döşeğe fırlattı. Kafam duvara çarptı, gözlerim yavaş yavaş karardı. Soğuk ama güven veren bir dokunuş hissettim; birisi beni kucağına aldı.
+
+Ve o kişi konuşmaya başladı, sesi soğuk bir tehdit gibiydi:
+“Küçük kızım, bana yavaş yavaş boyun eğeceksin. Eğer eğmezsen ben eğmesini bilirim.”
+
+Boynumu yavaşça öptü, ardından geriye çekildi. Ayak sesleri betonda yankılanıyordu; her adımı, korku dolu yankısıyla kalbime işliyordu.
+
+Yavaş adımlarla demir parmaklıklara yaklaştı. Kapıyı kapattı, kilitledi ve sessizce dışarı çıktı. Kapıyı kapattıktan sonra gittiği kapıdan çıktı.
+
+Gözlerim ağır ağır yeniden kapandı. Karanlık, en büyük düşmanım, beni yine kucakladı. Ve biliyordum ki o karanlık, hep benimle kalacaktı.
+
+Karanlık, korku dolu gözlerime aşık olmuştu.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Rukiye Akbal. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+</body>
+</html>
